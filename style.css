@@ -1,0 +1,230 @@
+/* ═══════════════════════════════════════════════
+   MEGAMAN ZX · MiniBlog CSS
+   Estética: Sci-fi limpio, sin animaciones complejas
+   ═══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap');
+
+/* ── Variables ── */
+:root {
+  --bg-deep:    #050A14;
+  --bg-panel:   #0A1628;
+  --bg-card:    #0D1F3C;
+
+  --cyan:       #fc6262;
+  --cyan-dim:   #0097A7;
+  --green-bio:  #00E676;
+
+  --text-main:  #C8E6FF;
+  --text-muted: #4A7A9B;
+  --text-dim:   #1E3A5F;
+
+  --border:     rgba(0, 229, 255, 0.2);
+
+  --font-hud:   'Orbitron', monospace;
+  --font-body:  'Exo 2', sans-serif;
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+img { display: block; max-width: 100%; }
+a   { text-decoration: none; color: inherit; }
+ul  { list-style: none; }
+
+/* ── Contenedor ── */
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2.5rem);
+}
+
+/* ═══════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════ */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  border-top: 2px solid var(--cyan);
+}
+
+/* ── Fila interna ── */
+.container > div {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2.5vw, 2rem);
+  height: 68px;
+}
+
+/* ── Imagen del logo ── */
+.site-header img {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  border: 1px solid var(--cyan-dim);
+  flex-shrink: 0;
+  transition: border-color 0.2s;
+}
+
+.site-header img:hover {
+  border-color: var(--cyan);
+}
+
+/* ── Texto del logo ── */
+.Logo {
+  font-family: var(--font-hud);
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Navegación ── */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.75rem);
+  margin-left: auto;
+}
+
+.site-nav a {
+  font-family: var(--font-hud);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.35rem 0;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.site-nav a:hover {
+  color: var(--cyan);
+  border-bottom-color: var(--cyan);
+}
+
+/* Primer ítem como activo */
+.site-nav li:first-child a {
+  color: var(--cyan);
+  border-bottom-color: var(--cyan);
+}
+
+/* ── Botón hamburguesa ── */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: border-color 0.2s;
+}
+
+.nav-toggle:hover {
+  border-color: var(--cyan);
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: var(--cyan);
+  transition: transform 0.25s, opacity 0.25s;
+  transform-origin: center;
+}
+
+/* ── Main ── */
+main {
+  min-height: calc(100vh - 68px);
+  padding: clamp(2rem, 6vw, 5rem) 0;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVO
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .container > div {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 0.75rem 0;
+    position: relative;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .site-nav {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    width: 100%;
+    margin-left: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 1px solid var(--cyan);
+    order: 10;
+  }
+
+  .site-nav.open {
+    display: flex;
+  }
+
+  .site-nav li {
+    width: 100%;
+  }
+
+  .site-nav a {
+    display: block;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.7rem;
+    border-bottom: 1px solid var(--text-dim);
+    border-left: none;
+  }
+
+  .site-nav li:last-child a {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .Logo {
+    font-size: 0.8rem;
+  }
+
+  .site-header img {
+    width: 34px;
+    height: 34px;
+  }
+}
