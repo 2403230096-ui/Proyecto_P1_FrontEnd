@@ -5,7 +5,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap');
 
-/* ── Variables ── */
+/* ══════════════════════════
+   VARIABLES
+══════════════════════════ */
+
 :root {
   --bg-deep:    #050A14;
   --bg-panel:   #0A1628;
@@ -25,7 +28,10 @@
   --font-body:  'Exo 2', sans-serif;
 }
 
-/* ── Reset ── */
+/* ══════════════════════════
+   RESET
+══════════════════════════ */
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -47,16 +53,19 @@ img { display: block; max-width: 100%; }
 a   { text-decoration: none; color: inherit; }
 ul  { list-style: none; }
 
-/* ── Contenedor ── */
+/* ══════════════════════════
+   CONTENEDOR
+══════════════════════════ */
+
 .container {
   max-width: 1140px;
   margin: 0 auto;
   padding: 0 clamp(1rem, 4vw, 2.5rem);
 }
 
-/* ═══════════════════════════════════════════════
+/* ══════════════════════════
    HEADER
-   ═══════════════════════════════════════════════ */
+══════════════════════════ */
 
 .site-header {
   position: sticky;
@@ -67,7 +76,6 @@ ul  { list-style: none; }
   border-top: 2px solid var(--cyan);
 }
 
-/* ── Fila interna ── */
 .container > div {
   display: flex;
   align-items: center;
@@ -75,7 +83,6 @@ ul  { list-style: none; }
   height: 68px;
 }
 
-/* ── Imagen del logo ── */
 .site-header img {
   width: 42px;
   height: 42px;
@@ -89,7 +96,6 @@ ul  { list-style: none; }
   border-color: var(--cyan);
 }
 
-/* ── Texto del logo ── */
 .Logo {
   font-family: var(--font-hud);
   font-size: clamp(0.85rem, 2vw, 1.1rem);
@@ -101,7 +107,10 @@ ul  { list-style: none; }
   flex-shrink: 0;
 }
 
-/* ── Navegación ── */
+/* ══════════════════════════
+   NAVEGACIÓN
+══════════════════════════ */
+
 .site-nav {
   display: flex;
   align-items: center;
@@ -126,13 +135,15 @@ ul  { list-style: none; }
   border-bottom-color: var(--cyan);
 }
 
-/* Primer ítem como activo */
 .site-nav li:first-child a {
   color: var(--cyan);
   border-bottom-color: var(--cyan);
 }
 
-/* ── Botón hamburguesa ── */
+/* ══════════════════════════
+   HAMBURGUESA
+══════════════════════════ */
+
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -162,89 +173,239 @@ ul  { list-style: none; }
   transform-origin: center;
 }
 
-/* ── Main ── */
+/* ══════════════════════════
+   MAIN
+══════════════════════════ */
+
 main {
   min-height: calc(100vh - 68px);
   padding: clamp(2rem, 6vw, 5rem) 0;
 }
 
-/* =========================
-   TARJETAS
-========================= */
+/* ══════════════════════════
+   HISTORIA
+══════════════════════════ */
 
-.card-img img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;  /* cabe completa sin recortar */
-    display: block;
-    margin: 0 auto;
+.historia {
+  margin-bottom: 3rem;
 }
+
+.historia h2 {
+  font-family: var(--font-hud);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.historia p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.historia p:last-child {
+  margin-bottom: 0;
+}
+
+/* ══════════════════════════
+   MODELOS — SECCIÓN
+══════════════════════════ */
+
+.Modelos {
+  margin-bottom: 3rem;
+}
+
+.Modelos h2 {
+  font-family: var(--font-hud);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+/* ══════════════════════════
+   MODELOS — GRID
+══════════════════════════ */
 
 .cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
 }
 
-.card {
-    display: flex;
-    flex-direction: column;
-    width: 180px;
-    background: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.3s ease;
+/* ══════════════════════════
+   MODELOS — TARJETA
+══════════════════════════ */
+
+.card-forms {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s;
 }
 
-.card:hover {
-    border-color: #999;
-    transform: translateY(-4px);
-    box-shadow: 0 4px 10px rgba(0,0,0,.1);
+.card-forms:hover {
+  border-color: var(--cyan-dim);
 }
 
-.card-img {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
+/* ══════════════════════════
+   MODELOS — IMAGEN
+══════════════════════════ */
+
+.card-img-warp {
+  width: 100%;
+  aspect-ratio: 1 / 1.1;
+  overflow: hidden;
+  background: var(--bg-panel);
 }
+
+.card-img-warp img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* ══════════════════════════
+   MODELOS — CONTENIDO
+══════════════════════════ */
 
 .card-body {
-    padding: 10px 12px 12px;
-    flex: 1;
+  padding: 10px 12px 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: #777;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 2px;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 2px;
 }
 
-.card-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 4px;
+.card-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-main);
+  margin-bottom: 4px;
 }
 
 .card-desc {
-    font-size: 12px;
-    color: #666;
-    line-height: 1.5;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 8px;
+  flex: 1;
+}
+
+/* ══════════════════════════
+   MODELOS — TAGS
+══════════════════════════ */
+
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+
+.tag-hu     { background: #313131; color: #C8E6FF; }
+.tag-x      { background: #215eb4; color: #C8E6FF; }
+.tag-zx     { background: #a52727; color: #C8E6FF; }
+.tag-hx     { background: #2e942e; color: #C8E6FF; }
+.tag-fx     { background: #ae3712; color: #C8E6FF; }
+.tag-lx     { background: #1a189c; color: #C8E6FF; }
+.tag-px     { background: #43125c; color: #C8E6FF; }
+.tag-ox     { background: #2e0000; color: #C8E6FF; }
+
+/* ─────────────────────────────────────────
+   FOOTER
+   ───────────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: clamp(2.5rem, 5vw, 4rem) 0 2rem;
+}
+ 
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 3rem;
+}
+ 
+.footer-brand .logo {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+ 
+.footer-brand .logo span { color: var(--terra); }
+ 
+.footer-brand p {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 30ch;
+  line-height: 1.7;
+}
+ 
+.footer-col h4 {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+ 
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+ 
+.footer-col ul a {
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--ink-soft);
+  transition: color 0.2s;
+}
+ 
+.footer-col ul a:hover { color: var(--terra); }
+ 
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.76rem;
+  font-weight: 300;
+  color: var(--muted);
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 
-/* ═══════════════════════════════════════════════
+/* ══════════════════════════
    RESPONSIVO
-   ═══════════════════════════════════════════════ */
+══════════════════════════ */
 
 @media (max-width: 768px) {
   .container > div {
@@ -291,10 +452,9 @@ main {
     border-bottom: none;
   }
 
-  .card {
-      width: 100%;
-      max-width: 300px;
-    }
+  .cards-container {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
 }
 
 @media (max-width: 480px) {
@@ -307,8 +467,7 @@ main {
     height: 34px;
   }
 
-  .card {
-      width: 100%;
-      max-width: 300px;
-    }
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
