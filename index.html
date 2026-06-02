@@ -3,217 +3,433 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MageMan ZX</title>
+    <title>MegaMan ZX</title>
+
+    <!-- ══════════════════════════════════════════
+         BOOTSTRAP 5.3 CDN
+         Se carga antes que style.css para que nuestros
+         estilos propios puedan sobreescribir los de Bootstrap
+    ══════════════════════════════════════════ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- Fuente personalizada e iconos del proyecto -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
- 
-    <!--    Parte Inicial del MiniBlog      -->
-    <header class="site-header">
+
+    <!-- ══════════════════════════════════════════
+         HEADER / NAVEGACIÓN
+         - "sticky-top" de Bootstrap mantiene el header fijo al hacer scroll
+         - "container" de Bootstrap centra el contenido con márgenes automáticos
+         - "d-flex align-items-center gap-3" son utilidades Flexbox de Bootstrap
+         - "d-none d-md-flex" oculta en mobile y muestra en pantallas medianas+
+         - "ms-auto" empuja el nav hacia la derecha (margin-start: auto)
+    ══════════════════════════════════════════ -->
+    <header class="site-header sticky-top">
         <div class="container">
-            <div>
+            <div class="d-flex align-items-center gap-3 py-2">
+
+                <!-- Logo imagen -->
                 <img src="https://i.pinimg.com/736x/6e/37/be/6e37becde8194a10199e096ed895374d.jpg"
                      alt="Megaman ZX / Nintendo DS Cover">
- 
+
+                <!-- Nombre del sitio -->
                 <a href="#" class="Logo">Megaman ZX</a>
- 
-                <nav aria-label="Navegacion Principal">
-                    <ul class="site-nav" id="main-nav">
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Historia</a></li>
-                        <li><a href="#">Personajes</a></li>
-                        <li><a href="#">Galeria</a></li>
-                    </ul>
-                </nav>
- 
-                <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" id="nav-toggle">
+
+                <!-- Botón hamburguesa — "d-md-none" lo oculta en pantallas medianas+ -->
+                <button class="nav-toggle d-md-none ms-auto"
+                        aria-label="Abrir menú"
+                        aria-expanded="false"
+                        id="nav-toggle">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
+
+                <!-- Nav desktop — "d-none d-md-flex" oculta en mobile, muestra en md+ -->
+                <nav aria-label="Navegacion Principal" class="ms-auto">
+                    <ul class="site-nav d-none d-md-flex" id="main-nav">
+                        <li><a href="#historia">Inicio</a></li>
+                        <li><a href="#historia">Historia</a></li>
+                        <li><a href="#modelos">Modelos</a></li>
+                        <li><a href="#galeria">Galería</a></li>
+                    </ul>
+                </nav>
+
             </div>
+
+            <!-- Menú móvil — se muestra con JS al agregar la clase "open" -->
+            <ul class="site-nav mobile-menu" id="mobile-nav">
+                <li><a href="#historia">Inicio</a></li>
+                <li><a href="#historia">Historia</a></li>
+                <li><a href="#modelos">Modelos</a></li>
+                <li><a href="#galeria">Galería</a></li>
+            </ul>
         </div>
     </header>
 
-<section class="historia">
-  <h2>Historia</h2>
+    <!-- ══════════════════════════════════════════
+         SECCIÓN: HISTORIA
+         - "container" de Bootstrap limita el ancho y centra el contenido
+         - "py-5" añade padding vertical usando la escala de espaciado de Bootstrap
+         - "img-fluid" en las imágenes las hace responsivas (max-width: 100%)
+         - "d-block mx-auto" centra las imágenes (display:block + margin:auto)
+         - "rounded" de Bootstrap aplica border-radius a las imágenes
+    ══════════════════════════════════════════ -->
+    <section class="historia" id="historia">
+        <div class="container py-5">
 
-  <p>Giro Express is hired to deliver a package to the Guardians, but they are attacked by Mavericks. Vent/Aile is separated from Girouette, ending up near the rendezvous point where Prairie and the Guardians are also under attack. To save them, Vent/Aile uses the package - the Biometal Model X - to Megamerge. After defeating the Mavericks, Vent/Aile joins the Guardians to use Model X to find Giro.</p>
+            <h2>Historia</h2>
 
-  <p>Vent/Aile reunites with Giro, discovering he is the user of Model Z and secretly already a Guardian. Shortly after, a city comes under attack by Mavericks, so Vent/Aile and Giro rush to the scene. However, Giro is overpowered by Serpent, Prometheus, and Pandora. Serpent brainwashes Giro using Model W, forcing him to fight Vent/Aile. Afterwards, Serpent kills Giro and departs to let the Mavericks clean up. Desperate, Vent/Aile Double Megamerges with Model Z to create Model ZX, and escapes.</p>
+            <!-- Párrafo 1: El inicio de la historia -->
+            <p>Giro Express es contratado para entregar un paquete a los Guardianes, pero son atacados por Mavericks. Vent/Aile queda separado de Girouette, terminando cerca del punto de encuentro donde Prairie y los Guardianes también están bajo ataque. Para salvarlos, Vent/Aile usa el paquete — el Biometal Modelo X — para fusionarse. Tras derrotar a los Mavericks, Vent/Aile se une a los Guardianes para usar el Modelo X y encontrar a Giro.</p>
 
-  <p>Vent/Aile returns to the Guardians and plans to liberate the other four Biometals held by Serpent's forces. They hunt the Pseudoroids working for Slither Inc., in turn recruiting Models H, L, F, and P. After defeating four Pseudoroids, Serpent sends Prometheus and Pandora to assault the Guardian Base, but Vent/Aile repels them.</p>
+            <!-- img-fluid: Bootstrap hace la imagen responsiva sin romper el layout -->
+            <img src="https://static.wikitide.net/megamanwiki/4/45/MMZX_Scene_02_%28Aile%29.png"
+                 alt="Beginning"
+                 class="img-fluid d-block mx-auto rounded">
 
-  <p>Once all eight Pseudoroids are defeated and all four Biometals are complete, Vent/Aile uses their passwords to open the seal to reach the Model W core before Serpent. However, Pandora intervenes and allows Serpent to extract the core. Vent/Aile infiltrates Slither Inc.'s Office to stop him, but their hatred for Serpent is used as the final key to awaken the Model W core. Despite this, the six Biometals urge Vent/Aile to protect what they love, and they defeat Serpent and Model W. Serpent dies, and Model W is apparently destroyed.</p>
+            <!-- Párrafo 2: Traición y pérdida de Giro -->
+            <p>Vent/Aile se reencuentra con Giro, descubriendo que es el portador del Modelo Z y que en secreto ya era un Guardián. Poco después, una ciudad es atacada por Mavericks, por lo que Vent/Aile y Giro acuden al lugar. Sin embargo, Giro es superado por Serpent, Prometheus y Pandora. Serpent manipula a Giro usando el Modelo W, obligándolo a combatir contra Vent/Aile. Después, Serpent mata a Giro y se retira dejando a los Mavericks terminar el trabajo. Desesperado, Vent/Aile realiza la Doble Fusión con el Modelo Z para crear el Modelo ZX, y escapa.</p>
 
-  <p>After the explosion, Vent/Aile is visited by the Cyber-elf of Giro, who urges them to continue fighting for peace. They then reunite with Prairie and the Guardians, promising to work for a better future.</p>
-</section>
+            <img src="https://static.wikitide.net/megamanwiki/9/99/ModelZX_aile.jpg"
+                 alt="Combinacion de Modelos"
+                 class="img-fluid d-block mx-auto rounded">
 
-<section class="Modelos">
-<h2>Modelos</h2>
-    <main>
-        <div class="cards-container">
-            
-            <article class="card-forms">
-                <div class="card-img-warp">
-                    <img src="https://i.pinimg.com/736x/0e/34/1e/0e341e28b477a880fd293e5c123227b4.jpg" alt="Humaniode Form">
-                </div>
+            <!-- Párrafo 3: La búsqueda de los Biometales -->
+            <p>Vent/Aile regresa con los Guardianes y planea liberar los otros cuatro Biometales en manos de las fuerzas de Serpent. Cazan a los Pseudoroids que trabajan para Slither Inc., obteniendo en el proceso los Modelos H, L, F y P. Tras derrotar a cuatro Pseudoroids, Serpent envía a Prometheus y Pandora a atacar la Base de los Guardianes, pero Vent/Aile los repele.</p>
 
-                <div class="card-body">
-                    <p class="card-label">Forma</p>
-                    <p class="card-name">Humanoide</p>
-                    <p class="card-desc">Forma base de Aile/Vent</p>
-                    <span class="tag tag-hu">Simbolo Hu</span>
-                </div>
-            </article>
+            <img src="https://static.wikitide.net/megamanwiki/3/38/Prometheus%26pandora.jpg"
+                 alt="Pelea en Base"
+                 class="img-fluid d-block mx-auto rounded">
 
-            <article class="card-forms">
-                <div class="card-img-warp">
-                    <img src="https://i.pinimg.com/1200x/99/1c/6a/991c6ae6267534eee89e48ffbf88bda2.jpg" alt="Modelo X">
-                </div>
+            <!-- Párrafo 4: El clímax con Serpent y el Modelo W -->
+            <p>Una vez derrotados los ocho Pseudoroids y completados los cuatro Biometales, Vent/Aile usa sus contraseñas para abrir el sello y llegar al núcleo del Modelo W antes que Serpent. Sin embargo, Pandora interviene y permite que Serpent extraiga el núcleo. Vent/Aile se infiltra en las oficinas de Slither Inc. para detenerlo, pero su odio hacia Serpent es usado como clave final para despertar el núcleo del Modelo W. A pesar de esto, los seis Biometales impulsan a Vent/Aile a proteger lo que ama, logrando derrotar a Serpent y al Modelo W. Serpent muere y el Modelo W es aparentemente destruido.</p>
 
-                <div class="card-body">
-                    <p class="card-label">Forma</p>
-                    <h3 class="card-name">Modelo X</h3>
-                    <p class="card-desc">Basado en el legendario X</p>
-                    <span class="tag tag-x">Simbolo X</span>
-                </div>
-            </article>
+            <img src="https://static.wikitide.net/megamanwiki/6/6b/Serpent_-_modelWcore.jpg"
+                 alt="Model W"
+                 class="img-fluid d-block mx-auto rounded">
 
-                <article class="card-forms">
-                <div class="card-img-warp">
-                    <img src="https://i.pinimg.com/1200x/71/46/a0/7146a0f3495bf0992e7343b80783b861.jpg" alt="Modelo ZX">
-                </div>
+            <!-- Párrafo 5: Epílogo y promesa de paz -->
+            <p>Tras la explosión, Vent/Aile recibe la visita del Cyber-elfo de Giro, quien los urge a seguir luchando por la paz. Luego se reúnen con Prairie y los Guardianes, prometiendo trabajar por un futuro mejor.</p>
 
-                <div class="card-body">
-                    <p class="card-label">Forma</p>
-                    <h3 class="card-name">Modelo ZX</h3>
-                    <p class="card-desc">La combinacion del Modelo X y Modelo Z, el MegaMan definitivo</p>
-                    <span class="tag tag-zx">Simbolo Zx</span>
-                </div>
-            </article>
-
-                <article class="card-forms">
-                <div class="card-img-warp">
-                    <img src="https://i.pinimg.com/1200x/51/e6/f9/51e6f956b7bbf54eba5bddfa0ad9eee9.jpg" alt="Modelo HX">
-                </div>
-
-                <div class="card-body">
-                    <p class="card-label">Forma</p>
-                    <h3 class="card-name">Modelo HX</h3>
-                    <p class="card-desc">La combinacion del Modelo X y Modelo H, el MegaMan del viento</p>
-                    <span class="tag tag-hx">Simbolo Hx</span>
-                </div>
-            </article>
-
-                <article class="card-forms">
-                <div class="card-img-warp">
-                    <img src="https://i.pinimg.com/1200x/a3/7c/72/a37c723d222a3ced4203a53329eebf82.jpg" alt="Modelo FX">
-                </div>
-
-                <div class="card-body">
-                    <p class="card-label">Forma</p>
-                    <h3 class="card-name">Modelo FX</h3>
-                    <p class="card-desc">La combinacion del Modelo X y Modelo F, el MegaMan del fuego</p>
-                    <span class="tag tag-fx">Simbolo Hu</span>
-                </div>
-            </article>
-
-                <article class="card-forms">
-                <div class="card-img-warp">
-                    <img src="https://i.pinimg.com/736x/b2/65/fe/b265fec2e266fc4037d3f1323796b041.jpg" alt="Modelo LX">
-                </div>
-
-                <div class="card-body">
-                    <p class="card-label">Forma</p>
-                    <h3 class="card-name">Modelo LX</h3>
-                    <p class="card-desc">La combinacion del Modelo X y Modelo L, el MegaMan del agua</p>
-                    <span class="tag tag-lx">Simbolo Lx</span>
-                </div>
-            </article>
-
-                <article class="card-forms">
-                <div class="card-img-warp">
-                    <img src="https://i.pinimg.com/1200x/c9/fc/a5/c9fca5727d77d8a6210cf793c4004a8d.jpg" alt="Modelo PX">
-                </div>
-
-                <div class="card-body">
-                    <p class="card-label">Forma</p>
-                    <h3 class="card-name">Modelo PX</h3>
-                    <p class="card-desc">La combinacion del Modelo X y Modelo P, el MegaMan de las sombras</p>
-                    <span class="tag tag-px">Simbolo Px</span>
-                </div>
-            </article>
-
-                <article class="card-forms">
-                <div class="card-img-warp">
-                    <img src="https://th.bing.com/th/id/R.ff595d0faa2995905772d3b102224731?rik=I8yoW63evrzHvA&riu=http%3a%2f%2fimg1.wikia.nocookie.net%2f__cb20090101230609%2fmegaman%2fimages%2fe%2fe7%2fOXaile.png&ehk=IgV9TfKnwnNfoGZwlifG77GFkys6JsNFZvA1hGudhUk%3d&risl=&pid=ImgRaw&r=0" alt="Modelo OX">
-                </div>
-
-                <div class="card-body">
-                    <p class="card-label">Forma</p>
-                    <h3 class="card-name">Modelo OX</h3>
-                    <p class="card-desc">La combinacion del Modelo X y el biometal Omega, el MegaMan Zero Original</p>
-                    <span class="tag tag-ox">Simbolo Hu</span>
-                </div>
-            </article>
+            <img src="https://static.wikitide.net/megamanwiki/5/55/ZX_end_aile.jpg"
+                 alt="Final"
+                 class="img-fluid d-block mx-auto rounded">
 
         </div>
-    </main>
-</section>
+    </section>
 
-<section class="footer">
-  <footer class="site-footer">
-    <div class="container">
- 
-      <div class="footer-grid">
- 
-        <div class="footer-brand">
-          <p class="logo">Párr<span>a</span>fo</p>
-          <p>
-            Un blog sobre escritura, ideas y el mundo que nos rodea. 
-            Publicamos dos veces por semana, sin prisa y sin relleno.
-          </p>
+    <!-- ══════════════════════════════════════════
+         SECCIÓN: MODELOS
+         - "container" y "py-5" de Bootstrap para layout y espaciado
+         - Las tarjetas usan CSS Grid propio (.cards-container) en lugar
+           del sistema de columnas de Bootstrap, porque el grid propio
+           ya tiene el comportamiento correcto con auto-fill + minmax
+         - Cada <article class="card-forms"> es una tarjeta individual
+         - .card-img-warp controla la imagen con aspect-ratio uniforme
+         - .tag con su variante de color identifica el elemento del modelo
+    ══════════════════════════════════════════ -->
+    <section class="Modelos" id="modelos">
+        <div class="container py-5">
+            <h2>Modelos</h2>
+
+            <!-- Grid de tarjetas: CSS Grid propio, no el de Bootstrap -->
+            <div class="cards-container">
+
+                <!-- Tarjeta: Humanoide — forma base sin ningún Biometal -->
+                <article class="card-forms">
+                    <div class="card-img-warp">
+                        <img src="https://i.pinimg.com/736x/0e/34/1e/0e341e28b477a880fd293e5c123227b4.jpg" alt="Humanoide Form">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-label">Forma</p>
+                        <p class="card-name">Humanoide</p>
+                        <p class="card-desc">Forma base de Aile/Vent</p>
+                        <span class="tag tag-hu">Símbolo Hu</span>
+                    </div>
+                </article>
+
+                <!-- Tarjeta: Modelo X — primera fusión del juego -->
+                <article class="card-forms">
+                    <div class="card-img-warp">
+                        <img src="https://static.wikitide.net/megamanwiki/c/c5/AileModelX.png" alt="Modelo X">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-label">Forma</p>
+                        <h3 class="card-name">Modelo X</h3>
+                        <p class="card-desc">Basado en el legendario X</p>
+                        <span class="tag tag-x">Símbolo X</span>
+                    </div>
+                </article>
+
+                <!-- Tarjeta: Modelo ZX — fusión doble, la forma más poderosa -->
+                <article class="card-forms">
+                    <div class="card-img-warp">
+                        <img src="https://static.wikitide.net/megamanwiki/2/2f/AileModelZX.png" alt="Modelo ZX">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-label">Forma</p>
+                        <h3 class="card-name">Modelo ZX</h3>
+                        <p class="card-desc">La combinación del Modelo X y Modelo Z, el MegaMan definitivo</p>
+                        <span class="tag tag-zx">Símbolo ZX</span>
+                    </div>
+                </article>
+
+                <!-- Tarjeta: Modelo HX — elemento viento, movilidad aérea -->
+                <article class="card-forms">
+                    <div class="card-img-warp">
+                        <img src="https://static.wikitide.net/megamanwiki/c/cb/VentModelHX.png" alt="Modelo HX">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-label">Forma</p>
+                        <h3 class="card-name">Modelo HX</h3>
+                        <p class="card-desc">La combinación del Modelo X y Modelo H, el MegaMan del viento</p>
+                        <span class="tag tag-hx">Símbolo HX</span>
+                    </div>
+                </article>
+
+                <!-- Tarjeta: Modelo FX — elemento fuego, ataque potente -->
+                <article class="card-forms">
+                    <div class="card-img-warp">
+                        <img src="https://static.wikitide.net/megamanwiki/a/a0/VentModelFX.png" alt="Modelo FX">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-label">Forma</p>
+                        <h3 class="card-name">Modelo FX</h3>
+                        <p class="card-desc">La combinación del Modelo X y Modelo F, el MegaMan del fuego</p>
+                        <span class="tag tag-fx">Símbolo FX</span>
+                    </div>
+                </article>
+
+                <!-- Tarjeta: Modelo LX — elemento agua, ataques en área -->
+                <article class="card-forms">
+                    <div class="card-img-warp">
+                        <img src="https://static.wikitide.net/megamanwiki/5/5d/AileModelLX.png" alt="Modelo LX">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-label">Forma</p>
+                        <h3 class="card-name">Modelo LX</h3>
+                        <p class="card-desc">La combinación del Modelo X y Modelo L, el MegaMan del agua</p>
+                        <span class="tag tag-lx">Símbolo LX</span>
+                    </div>
+                </article>
+
+                <!-- Tarjeta: Modelo PX — elemento sombra, sigilo y velocidad -->
+                <article class="card-forms">
+                    <div class="card-img-warp">
+                        <img src="https://static.wikitide.net/megamanwiki/c/c0/AileModelPX.png" alt="Modelo PX">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-label">Forma</p>
+                        <h3 class="card-name">Modelo PX</h3>
+                        <p class="card-desc">La combinación del Modelo X y Modelo P, el MegaMan de las sombras</p>
+                        <span class="tag tag-px">Símbolo PX</span>
+                    </div>
+                </article>
+
+                <!-- Tarjeta: Modelo OX — forma secreta basada en el biometal Omega -->
+                <article class="card-forms">
+                    <div class="card-img-warp">
+                        <img src="https://static.wikitide.net/megamanwiki/e/e7/OXaile.png" alt="Modelo OX">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-label">Forma</p>
+                        <h3 class="card-name">Modelo OX</h3>
+                        <p class="card-desc">La combinación del Modelo X y el biometal Omega, el MegaMan Zero Original</p>
+                        <span class="tag tag-ox">Símbolo OX</span>
+                    </div>
+                </article>
+
+            </div>
         </div>
- 
-        <div class="footer-col">
-          <h4>Secciones</h4>
-          <ul>
-            <li><a href="#">Ensayos</a></li>
-            <li><a href="#">Crónicas</a></li>
-            <li><a href="#">Ficción</a></li>
-            <li><a href="#">Archivo</a></li>
-          </ul>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECCIÓN: GALERÍA
+         - "container" y "py-5" de Bootstrap para layout y espaciado
+         - "galeria-grid" usa CSS Grid propio (minmax 280px)
+         - <figure> y <figcaption> son etiquetas semánticas HTML5
+           correctas para imagen + descripción (mejor que div+p)
+         - "img-fluid" de Bootstrap en cada imagen la hace responsiva
+         - El hover en .galeria-item está definido en style.css
+    ══════════════════════════════════════════ -->
+    <section class="Galeria" id="galeria">
+        <div class="container py-5">
+            <h2>Galería</h2>
+
+            <!-- Grid de galería: CSS Grid propio para columnas responsivas -->
+            <div class="galeria-grid">
+
+                <!-- figure: par semántico de imagen + descripción -->
+                <figure class="galeria-item">
+                    <img src="https://static.wikitide.net/megamanwiki/1/1d/Aile_Model_X_concept_art.jpeg"
+                         alt="Aile Modelo X" class="img-fluid">
+                    <figcaption>Arte conceptual de Aile</figcaption>
+                </figure>
+
+                <figure class="galeria-item">
+                    <img src="https://static.wikitide.net/megamanwiki/7/7b/Vent_concept_art..jpeg"
+                         alt="Vent Modelo X" class="img-fluid">
+                    <figcaption>Arte conceptual de Vent</figcaption>
+                </figure>
+
+                <figure class="galeria-item">
+                    <img src="https://static.wikitide.net/megamanwiki/e/e6/Biometal_X.png"
+                         alt="Biometal X" class="img-fluid">
+                    <figcaption>Biometal X</figcaption>
+                </figure>
+
+                <figure class="galeria-item">
+                    <img src="https://static.wikitide.net/megamanwiki/9/96/Biometal_Z.png"
+                         alt="Biometal Z" class="img-fluid">
+                    <figcaption>Biometal Z</figcaption>
+                </figure>
+
+                <figure class="galeria-item">
+                    <img src="https://static.wikitide.net/megamanwiki/2/2b/Biometal_F.png"
+                         alt="Biometal F" class="img-fluid">
+                    <figcaption>Biometal F</figcaption>
+                </figure>
+
+                <figure class="galeria-item">
+                    <img src="https://static.wikitide.net/megamanwiki/a/a3/Biometal_H.png"
+                         alt="Biometal H" class="img-fluid">
+                    <figcaption>Biometal H</figcaption>
+                </figure>
+
+                <figure class="galeria-item">
+                    <img src="https://static.wikitide.net/megamanwiki/a/ab/Biometal_L.png"
+                         alt="Biometal L" class="img-fluid">
+                    <figcaption>Biometal L</figcaption>
+                </figure>
+
+                <figure class="galeria-item">
+                    <img src="https://static.wikitide.net/megamanwiki/f/fd/Biometal_P.png"
+                         alt="Biometal P" class="img-fluid">
+                    <figcaption>Biometal P</figcaption>
+                </figure>
+
+                <figure class="galeria-item">
+                    <img src="https://static.wikitide.net/megamanwiki/4/47/Gyro_Model_Z_concept_art.jpg"
+                         alt="Gyro Modelo Z" class="img-fluid">
+                    <figcaption>Arte conceptual de Gyro</figcaption>
+                </figure>
+
+                <figure class="galeria-item">
+                    <img src="https://static.wikitide.net/megamanwiki/b/b9/ModelFX_concept.jpg"
+                         alt="Vent Modelo F" class="img-fluid">
+                    <figcaption>Arte conceptual del Modelo F</figcaption>
+                </figure>
+
+                <figure class="galeria-item">
+                    <img src="https://static.wikitide.net/megamanwiki/3/31/ModelHX_concept.jpg"
+                         alt="Vent Modelo H" class="img-fluid">
+                    <figcaption>Arte conceptual del Modelo H</figcaption>
+                </figure>
+
+                <figure class="galeria-item">
+                    <img src="https://static.wikitide.net/megamanwiki/6/63/ModelLX_concept.jpg"
+                         alt="Vent Modelo L" class="img-fluid">
+                    <figcaption>Arte conceptual del Modelo L</figcaption>
+                </figure>
+
+                <figure class="galeria-item">
+                    <img src="https://static.wikitide.net/megamanwiki/e/ee/ModelPX_concept.jpg"
+                         alt="Vent Modelo P" class="img-fluid">
+                    <figcaption>Arte conceptual del Modelo P</figcaption>
+                </figure>
+
+                <figure class="galeria-item">
+                    <img src="https://static.wikitide.net/megamanwiki/4/49/ModelZX_concept.jpg"
+                         alt="Vent Modelo ZX" class="img-fluid">
+                    <figcaption>Arte conceptual del Modelo ZX</figcaption>
+                </figure>
+
+            </div>
         </div>
- 
-        <div class="footer-col">
-          <h4>Blog</h4>
-          <ul>
-            <li><a href="#">Acerca de</a></li>
-            <li><a href="#">Colaborar</a></li>
-            <li><a href="#">Contacto</a></li>
-            <li><a href="#">RSS</a></li>
-          </ul>
-        </div>
- 
-      </div>
- 
-      <div class="footer-bottom">
-        <span>© 2026 Párrafo. Hecho con cuidado.</span>
-        <span>Privacidad · Términos</span>
-      </div>
- 
-    </div>
-  </footer>
-</section>   
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECCIÓN: FOOTER
+         - "container" de Bootstrap centra el contenido
+         - "footer-grid" usa CSS Grid propio (2fr 1fr 1fr) para columnas
+         - "footer-bottom" usa flexbox para separar copyright y links legales
+         - Los colores usan variables CSS propias del proyecto
+           para mantener la estética sci-fi oscura
+    ══════════════════════════════════════════ -->
+    <section class="footer">
+        <footer class="site-footer">
+            <div class="container">
+
+                <!-- Grid de tres columnas del footer -->
+                <div class="footer-grid">
+
+                    <!-- Columna 1: Identidad del blog -->
+                    <div class="footer-brand">
+                        <p class="logo">Megaman <span>ZX</span></p>
+                        <p>Un miniblog sobre el universo de Megaman ZX — historia, personajes y biometales.</p>
+                    </div>
+
+                    <!-- Columna 2: Links internos del sitio -->
+                    <div class="footer-col">
+                        <h4>Secciones</h4>
+                        <ul>
+                            <li><a href="#historia">Historia</a></li>
+                            <li><a href="#modelos">Modelos</a></li>
+                            <li><a href="#galeria">Galería</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Columna 3: Links secundarios -->
+                    <div class="footer-col">
+                        <h4>Blog</h4>
+                        <ul>
+                            <li><a href="#">Acerca de</a></li>
+                            <li><a href="#">Colaborar</a></li>
+                            <li><a href="#">Contacto</a></li>
+                            <li><a href="#">RSS</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Barra inferior: copyright y links legales -->
+                <div class="footer-bottom">
+                    <span>© 2026 Megaman ZX MiniBlog.</span>
+                    <span>Privacidad · Términos</span>
+                </div>
+
+            </div>
+        </footer>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         BOOTSTRAP JS (bundle incluye Popper.js)
+         Se carga al final del <body> para no bloquear
+         el renderizado del HTML
+    ══════════════════════════════════════════ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ══════════════════════════════════════════
+         SCRIPT: MENÚ HAMBURGUESA (MOBILE)
+         - toggle: el botón con las 3 líneas
+         - mobileNav: el <ul> del menú móvil
+         - classList.toggle('open'): agrega/quita la clase que
+           muestra u oculta el menú (definida en style.css)
+         - aria-expanded: actualiza accesibilidad en cada click
+         - Las transformaciones en <span> animan las líneas → X
+         - El segundo listener cierra el menú al hacer click fuera
+    ══════════════════════════════════════════ -->
     <script>
-        const toggle = document.getElementById('nav-toggle');
-        const nav    = document.getElementById('main-nav');
- 
+        const toggle    = document.getElementById('nav-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+
         toggle.addEventListener('click', () => {
-            const open = nav.classList.toggle('open');
+            const open = mobileNav.classList.toggle('open');
             toggle.setAttribute('aria-expanded', open);
- 
+
+            // Anima las 3 líneas convirtiéndolas en una X
             const spans = toggle.querySelectorAll('span');
             if (open) {
                 spans[0].style.transform = 'translateY(6.5px) rotate(45deg)';
@@ -223,10 +439,11 @@
                 spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
             }
         });
- 
+
+        // Cierra el menú al hacer click fuera del header
         document.addEventListener('click', (e) => {
-            if (!toggle.contains(e.target) && !nav.contains(e.target)) {
-                nav.classList.remove('open');
+            if (!toggle.contains(e.target) && !mobileNav.contains(e.target)) {
+                mobileNav.classList.remove('open');
                 toggle.setAttribute('aria-expanded', 'false');
                 toggle.querySelectorAll('span').forEach(s => {
                     s.style.transform = ''; s.style.opacity = '';
@@ -234,6 +451,6 @@
             }
         });
     </script>
- 
+
 </body>
 </html>

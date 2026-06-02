@@ -1,35 +1,37 @@
 /* ═══════════════════════════════════════════════
    MEGAMAN ZX · MiniBlog CSS
-   Estética: Sci-fi limpio, sin animaciones complejas
    ═══════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap');
 
 /* ══════════════════════════
    VARIABLES
+   Paleta de colores y tipografías del proyecto.
 ══════════════════════════ */
 
 :root {
-  --bg-deep:    #050A14;
-  --bg-panel:   #0A1628;
-  --bg-card:    #0D1F3C;
+  --bg-deep:    #050A14;   /* Fondo principal de la página */
+  --bg-panel:   #0A1628;   /* Fondo del header y paneles */
+  --bg-card:    #0D1F3C;   /* Fondo de tarjetas y elementos */
 
-  --cyan:       #fc6262;
-  --cyan-dim:   #0097A7;
-  --green-bio:  #00E676;
+  --cyan:       #fc6262;   /* Color de acento principal (rojo) */
+  --cyan-dim:   #0097A7;   /* Color de acento secundario (hover) */
+  --green-bio:  #00E676;   /* Color para elementos bio/energia */
 
-  --text-main:  #C8E6FF;
-  --text-muted: #4A7A9B;
-  --text-dim:   #1E3A5F;
+  --text-main:  #C8E6FF;   /* Texto principal */
+  --text-muted: #4A7A9B;   /* Texto secundario / muted */
+  --text-dim:   #1E3A5F;   /* Texto muy tenue / separadores */
 
-  --border:     rgba(0, 229, 255, 0.2);
+  --border:     rgba(0, 229, 255, 0.2); /* Borde sutil con transparencia */
 
-  --font-hud:   'Orbitron', monospace;
-  --font-body:  'Exo 2', sans-serif;
+  --font-hud:   'Orbitron', monospace;  /* Fuente para títulos/HUD */
+  --font-body:  'Exo 2', sans-serif;    /* Fuente para texto corrido */
 }
 
 /* ══════════════════════════
    RESET
+   Normaliza márgenes, padding y box-sizing
+   en todos los elementos del navegador.
 ══════════════════════════ */
 
 *, *::before, *::after {
@@ -54,35 +56,19 @@ a   { text-decoration: none; color: inherit; }
 ul  { list-style: none; }
 
 /* ══════════════════════════
-   CONTENEDOR
-══════════════════════════ */
-
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 clamp(1rem, 4vw, 2.5rem);
-}
-
-/* ══════════════════════════
    HEADER
+   Bootstrap "sticky-top" ya maneja el position: sticky.
+   Aquí definimos los colores y bordes propios del diseño.
 ══════════════════════════ */
 
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 200;
   background: var(--bg-panel);
   border-bottom: 1px solid var(--border);
   border-top: 2px solid var(--cyan);
+  /* sticky-top de Bootstrap agrega z-index y position automáticamente */
 }
 
-.container > div {
-  display: flex;
-  align-items: center;
-  gap: clamp(0.75rem, 2.5vw, 2rem);
-  height: 68px;
-}
-
+/* Imagen del logo en el header */
 .site-header img {
   width: 42px;
   height: 42px;
@@ -96,6 +82,7 @@ ul  { list-style: none; }
   border-color: var(--cyan);
 }
 
+/* Texto del logo — usa fuente HUD del proyecto */
 .Logo {
   font-family: var(--font-hud);
   font-size: clamp(0.85rem, 2vw, 1.1rem);
@@ -108,14 +95,16 @@ ul  { list-style: none; }
 }
 
 /* ══════════════════════════
-   NAVEGACIÓN
+   NAVEGACIÓN — DESKTOP
+   Los links del menú horizontal.
 ══════════════════════════ */
 
 .site-nav {
   display: flex;
   align-items: center;
   gap: clamp(0.75rem, 2vw, 1.75rem);
-  margin-left: auto;
+  padding: 0;
+  margin: 0;
 }
 
 .site-nav a {
@@ -135,17 +124,55 @@ ul  { list-style: none; }
   border-bottom-color: var(--cyan);
 }
 
+/* Primer ítem activo por defecto */
 .site-nav li:first-child a {
   color: var(--cyan);
   border-bottom-color: var(--cyan);
 }
 
 /* ══════════════════════════
-   HAMBURGUESA
+   NAVEGACIÓN — MENÚ MÓVIL
+   El menú desplegable en pantallas pequeñas.
+══════════════════════════ */
+
+.mobile-menu {
+  display: none;          
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: 1px solid var(--cyan);
+  padding: 0;
+}
+
+/* JS agrega "open" al hacer click en el botón hamburguesa */
+.mobile-menu.open {
+  display: flex;
+}
+
+.mobile-menu li {
+  width: 100%;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.7rem;
+  border-bottom: 1px solid var(--text-dim);
+}
+
+.mobile-menu li:last-child a {
+  border-bottom: none;
+}
+
+/* ══════════════════════════
+   BOTÓN HAMBURGUESA
+   Las 3 líneas que se animan en una X.
 ══════════════════════════ */
 
 .nav-toggle {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
@@ -155,7 +182,6 @@ ul  { list-style: none; }
   border: 1px solid var(--border);
   cursor: pointer;
   padding: 8px;
-  margin-left: auto;
   flex-shrink: 0;
   transition: border-color 0.2s;
 }
@@ -164,6 +190,7 @@ ul  { list-style: none; }
   border-color: var(--cyan);
 }
 
+/* Cada línea del ícono hamburguesa */
 .nav-toggle span {
   display: block;
   width: 100%;
@@ -174,22 +201,15 @@ ul  { list-style: none; }
 }
 
 /* ══════════════════════════
-   MAIN
-══════════════════════════ */
-
-main {
-  min-height: calc(100vh - 68px);
-  padding: clamp(2rem, 6vw, 5rem) 0;
-}
-
-/* ══════════════════════════
-   HISTORIA
+   HISTORIA — SECCIÓN
+   Aquí controlamos tipografía e imágenes internas.
 ══════════════════════════ */
 
 .historia {
   margin-bottom: 3rem;
 }
 
+/* Título de sección con fuente HUD */
 .historia h2 {
   font-family: var(--font-hud);
   font-size: 22px;
@@ -200,6 +220,7 @@ main {
   margin-bottom: 1.25rem;
 }
 
+/* Párrafos del relato */
 .historia p {
   font-size: 15px;
   line-height: 1.7;
@@ -212,7 +233,26 @@ main {
 }
 
 /* ══════════════════════════
+   HISTORIA — IMÁGENES
+   Bootstrap "img-fluid d-block mx-auto rounded" ya maneja
+   responsividad y centrado. Aquí forzamos tamaño consistente
+   y separación vertical entre párrafo e imagen.
+══════════════════════════ */
+
+.historia img {
+  width: 100%;
+  max-width: 600px;      /* Límite de ancho para no estirar demasiado */
+  height: 300px;         /* Altura fija para consistencia entre imágenes */
+  object-fit: scale-down;
+  object-position: top center;
+  margin: 1.25rem auto;
+  border: 1px solid var(--border);
+  /* border-radius viene de la clase "rounded" de Bootstrap */
+}
+
+/* ══════════════════════════
    MODELOS — SECCIÓN
+   Contiene el grid de tarjetas de transformación.
 ══════════════════════════ */
 
 .Modelos {
@@ -230,7 +270,10 @@ main {
 }
 
 /* ══════════════════════════
-   MODELOS — GRID
+   MODELOS — GRID DE TARJETAS
+   CSS Grid propio en lugar del grid de Bootstrap.
+   auto-fill + minmax crea columnas responsivas automáticamente
+   sin necesidad de clases col-md-4 etc. de Bootstrap.
 ══════════════════════════ */
 
 .cards-container {
@@ -240,7 +283,10 @@ main {
 }
 
 /* ══════════════════════════
-   MODELOS — TARJETA
+   MODELOS — TARJETA INDIVIDUAL
+   Cada <article class="card-forms"> es una tarjeta.
+   display: flex + flex-direction: column permite que
+   el tag quede siempre al fondo sin importar el largo del texto.
 ══════════════════════════ */
 
 .card-forms {
@@ -259,25 +305,33 @@ main {
 }
 
 /* ══════════════════════════
-   MODELOS — IMAGEN
+   MODELOS — IMAGEN DE TARJETA
+   aspect-ratio da altura uniforme a todas las imágenes.
+   object-fit: contain muestra sprites completos sin recortar.
 ══════════════════════════ */
 
 .card-img-warp {
   width: 100%;
-  aspect-ratio: 1 / 1.1;
+  aspect-ratio: 3 / 4;   /* Proporción vertical uniforme */
   overflow: hidden;
   background: var(--bg-panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-img-warp img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;       /* No recorta — muestra el sprite completo */
+  object-position: center;
+  padding: 8px;              /* Respiro interno para el sprite */
 }
 
 /* ══════════════════════════
-   MODELOS — CONTENIDO
+   MODELOS — CONTENIDO DE TARJETA
+   flex: 1 en card-desc empuja el tag siempre hacia abajo,
+   haciendo todas las tarjetas visualmente consistentes.
 ══════════════════════════ */
 
 .card-body {
@@ -287,12 +341,14 @@ main {
   flex-direction: column;
 }
 
+/* Etiqueta pequeña encima del nombre ("Forma") */
 .card-label {
   font-size: 11px;
   color: var(--text-muted);
   margin-bottom: 2px;
 }
 
+/* Nombre del modelo */
 .card-name {
   font-size: 14px;
   font-weight: 500;
@@ -300,6 +356,7 @@ main {
   margin-bottom: 4px;
 }
 
+/* Descripción corta — flex:1 lo estira para empujar el tag al fondo */
 .card-desc {
   font-size: 12px;
   color: var(--text-muted);
@@ -309,7 +366,10 @@ main {
 }
 
 /* ══════════════════════════
-   MODELOS — TAGS
+   MODELOS — TAGS DE ELEMENTO
+   Cada modelo tiene su color propio que representa
+   el elemento o tipo de fusión.
+   align-self: flex-start evita que el tag se estire todo el ancho.
 ══════════════════════════ */
 
 .tag {
@@ -321,74 +381,168 @@ main {
   align-self: flex-start;
 }
 
-.tag-hu     { background: #313131; color: #C8E6FF; }
-.tag-x      { background: #215eb4; color: #C8E6FF; }
-.tag-zx     { background: #a52727; color: #C8E6FF; }
-.tag-hx     { background: #2e942e; color: #C8E6FF; }
-.tag-fx     { background: #ae3712; color: #C8E6FF; }
-.tag-lx     { background: #1a189c; color: #C8E6FF; }
-.tag-px     { background: #43125c; color: #C8E6FF; }
-.tag-ox     { background: #2e0000; color: #C8E6FF; }
+.tag-hu { background: #313131; color: #C8E6FF; } /* Humanoide — gris neutro */
+.tag-x  { background: #215eb4; color: #C8E6FF; } /* Modelo X  — azul */
+.tag-zx { background: #a52727; color: #C8E6FF; } /* Modelo ZX — rojo */
+.tag-hx { background: #2e942e; color: #C8E6FF; } /* Modelo HX — verde (viento) */
+.tag-fx { background: #ae3712; color: #C8E6FF; } /* Modelo FX — naranja (fuego) */
+.tag-lx { background: #1a189c; color: #C8E6FF; } /* Modelo LX — azul oscuro (agua) */
+.tag-px { background: #43125c; color: #C8E6FF; } /* Modelo PX — morado (sombra) */
+.tag-ox { background: #2e0000; color: #C8E6FF; } /* Modelo OX — rojo oscuro (Omega) */
 
-/* ─────────────────────────────────────────
+/* ══════════════════════════
+   GALERÍA — SECCIÓN
+   Bootstrap "py-5" maneja el padding.
+   galeria-grid usa minmax más grande (280px) que las tarjetas
+   porque las imágenes de galería son horizontales.
+══════════════════════════ */
+
+.Galeria {
+  margin-bottom: 3rem;
+}
+
+.Galeria h2 {
+  font-family: var(--font-hud);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+/* ══════════════════════════
+   GALERÍA — GRID
+   minmax(280px) da más ancho que las tarjetas de modelos
+   porque las imágenes de arte conceptual son más anchas.
+══════════════════════════ */
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+/* ══════════════════════════
+   GALERÍA — ITEM (figure)
+   <figure> es el elemento semántico correcto para
+   imagen + descripción en HTML5.
+══════════════════════════ */
+
+.galeria-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s;
+}
+
+.galeria-item:hover {
+  border-color: var(--cyan-dim);
+}
+
+/* ══════════════════════════
+   GALERÍA — IMAGEN
+   Bootstrap "img-fluid" ya hace la imagen responsiva.
+   height fijo garantiza que todas las celdas tengan
+   el mismo alto independientemente del tamaño original.
+══════════════════════════ */
+
+.galeria-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* ══════════════════════════
+   GALERÍA — DESCRIPCIÓN (figcaption)
+   <figcaption> es el par semántico de <figure>.
+   border-top separa visualmente el texto de la imagen.
+══════════════════════════ */
+
+.galeria-item figcaption {
+  padding: 10px 14px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+/* ══════════════════════════
    FOOTER
-   ───────────────────────────────────────── */
+   footer-grid usa CSS Grid propio (2fr 1fr 1fr).
+   Los colores usan variables del proyecto para
+   mantener la estética sci-fi oscura.
+══════════════════════════ */
+
 .site-footer {
   border-top: 1px solid var(--border);
   padding: clamp(2.5rem, 5vw, 4rem) 0 2rem;
 }
- 
+
+/* Grid de tres columnas: brand más ancha, dos cols de links iguales */
 .footer-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   gap: clamp(2rem, 5vw, 4rem);
   margin-bottom: 3rem;
 }
- 
+
+/* Columna de marca: logo + descripción */
 .footer-brand .logo {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-family: var(--font-hud);
+  font-size: 1.1rem;
   font-weight: 900;
-  color: var(--ink);
+  color: var(--cyan);
   margin-bottom: 0.75rem;
+  letter-spacing: 0.08em;
 }
- 
-.footer-brand .logo span { color: var(--terra); }
- 
+
+.footer-brand .logo span {
+  color: var(--text-main);
+}
+
 .footer-brand p {
   font-size: 0.85rem;
-  font-weight: 300;
-  color: var(--muted);
+  color: var(--text-muted);
   max-width: 30ch;
   line-height: 1.7;
 }
- 
+
+/* Título de columna de links */
 .footer-col h4 {
-  font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-family: var(--font-hud);
+  font-size: 0.65rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-weight: 400;
-  color: var(--muted);
+  font-weight: 600;
+  color: var(--text-muted);
   margin-bottom: 1rem;
 }
- 
+
+/* Lista de links del footer */
 .footer-col ul {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
 }
- 
+
 .footer-col ul a {
   font-size: 0.88rem;
-  font-weight: 300;
-  color: var(--ink-soft);
+  color: var(--text-muted);
   transition: color 0.2s;
 }
- 
-.footer-col ul a:hover { color: var(--terra); }
- 
+
+.footer-col ul a:hover {
+  color: var(--cyan);
+}
+
+/* Barra inferior: copyright y links legales */
 .footer-bottom {
   display: flex;
   align-items: center;
@@ -396,68 +550,39 @@ main {
   padding-top: 2rem;
   border-top: 1px solid var(--border);
   font-size: 0.76rem;
-  font-weight: 300;
-  color: var(--muted);
+  color: var(--text-muted);
   gap: 1rem;
   flex-wrap: wrap;
 }
 
-
 /* ══════════════════════════
-   RESPONSIVO
+   RESPONSIVO — TABLET (768px)
+   Bootstrap ya maneja la mayoría del responsive con
+   sus clases d-none / d-md-flex.
+   Aquí ajustamos el grid de tarjetas y el footer.
 ══════════════════════════ */
 
 @media (max-width: 768px) {
-  .container > div {
-    flex-wrap: wrap;
-    height: auto;
-    padding: 0.75rem 0;
-    position: relative;
-  }
 
-  .nav-toggle {
-    display: flex;
-  }
-
-  .site-nav {
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    width: 100%;
-    margin-left: 0;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-top: 1px solid var(--cyan);
-    order: 10;
-  }
-
-  .site-nav.open {
-    display: flex;
-  }
-
-  .site-nav li {
-    width: 100%;
-  }
-
-  .site-nav a {
-    display: block;
-    padding: 0.75rem 1.25rem;
-    font-size: 0.7rem;
-    border-bottom: 1px solid var(--text-dim);
-    border-left: none;
-  }
-
-  .site-nav li:last-child a {
-    border-bottom: none;
-  }
-
+  /* Tarjetas: columnas un poco más pequeñas en tablet */
   .cards-container {
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   }
+
+  /* Footer: de 3 columnas a 1 columna en mobile */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
+/* ══════════════════════════
+   RESPONSIVO — MÓVIL (480px)
+   Ajustes finales para pantallas muy pequeñas.
+══════════════════════════ */
+
 @media (max-width: 480px) {
+
   .Logo {
     font-size: 0.8rem;
   }
@@ -467,7 +592,13 @@ main {
     height: 34px;
   }
 
+  /* En móvil muy pequeño: exactamente 2 columnas de tarjetas */
   .cards-container {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Galería: 1 columna en móvil muy pequeño */
+  .galeria-grid {
+    grid-template-columns: 1fr;
   }
 }
